@@ -47,6 +47,7 @@ $(document).ready(function () {
 
   // Search GET /treats/thing
   function searchTreats(query) {
+    console.log(query);
     $.ajax({
       method: 'GET',
       url: '/treats/' + query,

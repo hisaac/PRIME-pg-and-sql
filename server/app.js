@@ -3,10 +3,8 @@ var app = express();
 var path = require('path');
 var port = process.env.PORT || 3000;
 var connectionString = "postgres://localhost:5432/sweets";
-var treats = require('./modules/treats.js');
+var treats = require('./modules/treats');
 var bodyParser = require('body-parser');
-
-/*** Build out a module to manage our treats requests. ***/
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
