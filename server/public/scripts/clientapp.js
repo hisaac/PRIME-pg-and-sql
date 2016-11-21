@@ -96,21 +96,23 @@ $(document).ready(function () {
       $treats.append('<div class="treat row"></div>');
     }
 
-    var $treat = $('<div class="six columns individual-treat">' +
-                  '<div class="image-wrap">' +
-                  '<img src="' + treat.pic + '" class="u-max-full-width" />' +
-                  '<div class="toggle row">' +
-                  '<div class="six columns">' +
-                  '<button class="edit u-full-width">Edit</button>' +
-                  '</div>' +
-                  '<div class="six columns">' +
-                  '<button class="delete u-full-width">Delete</button>' +
-                  '</div>' +
-                  '</div>' +
-                  '</div>' +
-                  '<h3>' + treat.name + '</h3>' +
-                  '<p>' + treat.description + '</p>' +
-                  '</div>');
+    var $treat = $(
+      '<div class="six columns individual-treat">' +
+        '<div class="image-wrap">' +
+          '<img src="' + treat.pic + '" class="u-max-full-width" />' +
+          '<div class="toggle row">' +
+            '<div class="six columns">' +
+              '<button class="edit u-full-width">Edit</button>' +
+            '</div>' +
+            '<div class="six columns">' +
+              '<button class="delete u-full-width">Delete</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+        '<h3>' + treat.name + '</h3>' +
+        '<p>' + treat.description + '</p>' +
+      '</div>'
+    );
 
     $treat.data('id', treat.id);
 
