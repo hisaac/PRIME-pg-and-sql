@@ -8,12 +8,19 @@ var config = {
 
 var pool = new pg.Pool(config);
 
-router.get('/:searchTerms', function(req, res){
-  getTreats(req.params.searchTerms, req, res);
-});
-
-router.get('/', function (req, res){
-  getTreats('', req, res);
+router.get('/', function (req, res) {
+  pool.connect()
+    .then(function (client) {
+      client.query("SELECT * FROM treats")
+        .then(function (result){
+          client.release();
+          res.send(result.rows);
+        }); //<---------------------.then
+    }) //<--------------------------.then
+    .catch(function (err){
+      console.log('error on SELECT', err);
+      res.sendStatus(500);
+    }); //<------------------------.catch
 }); //<------------------------router.get
 
 router.post('/', function (req, res) {
@@ -36,24 +43,3 @@ router.post('/', function (req, res) {
 }); //<-----------------------router.post
 
 module.exports = router;
-
-function getTreats(query, req, res){
-  var searchQuery = '';
-
-  if (query !== ''){
-    searchQuery = "WHERE name ILIKE '" + query + "'";
-  }
-
-  pool.connect()
-    .then(function (client) {
-      client.query('SELECT * FROM treats ' + searchQuery + ';')
-        .then(function (result){
-          client.release();
-          res.send(result.rows);
-        }); //<---------------------.then
-    }) //<--------------------------.then
-    .catch(function (err){
-      console.log('error on SELECT', err);
-      res.sendStatus(500);
-    }); //<------------------------.catch
-}
