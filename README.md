@@ -1,5 +1,9 @@
 # Code Challenge - Week 4 (SQL Databases and Server Integration)
 
+In this project, I finally got to link the server with the database.
+
+---
+
 ## Overview
 
 Your front-end developer has created all of the client-side code
